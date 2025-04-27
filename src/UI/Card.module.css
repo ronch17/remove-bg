@@ -1,0 +1,11 @@
+.right_div {
+  border-radius: 5px;
+  background: #2f3a4b;
+  padding: 50px 1px;
+}
+
+.left_div {
+  border-radius: 5px;
+  background: #2f3a4b;
+  padding-top: 12px;
+}

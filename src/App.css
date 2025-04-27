@@ -1,5 +1,31 @@
+@font-face {
+  font-family: Aduma;
+  src: url("./fonts/Aduma_Regular.ttf");
+}
+
 .App {
   text-align: center;
+  font-family: Aduma;
+  background: #222a34;
+  color: white;
+  height: auto;
+  width: 70%;
+  border-radius: 0.5rem;
+  box-shadow: 1px 1px 10px black;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 1rem;
+}
+
+button {
+  font-family: Aduma;
+}
+
+.grid_body {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  gap: 5px;
+  margin-top: 1rem;
 }
 
 .App-logo {

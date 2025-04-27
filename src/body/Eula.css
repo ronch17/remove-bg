@@ -1,0 +1,16 @@
+.eula-card {
+  background: #161b21;
+  color: white;
+  width: 50%;
+  top: 258px;
+  padding: 3rem 1.5rem;
+  position: absolute;
+  box-shadow: rgb(147 147 163 / 20%) 0px 1px 29px 0px;
+  border-radius: 5px;
+}
+
+.esc.close-eula {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}

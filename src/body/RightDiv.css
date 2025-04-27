@@ -1,0 +1,69 @@
+.Tabs_btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  float: right;
+}
+
+.tabs_group {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.left_side {
+  height: 80%;
+  background: #161b21;
+  padding: 9px;
+}
+
+.No_bg,
+.Original_bg {
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  line-height: 35px;
+  border-bottom: 3px solid transparent;
+  transition: 0.3s ease;
+}
+
+.No_bg:hover,
+.Original_bg:hover {
+  border-bottom: 3px solid #c933f3bd;
+  transition: 0.3s ease;
+}
+
+.eula {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+}
+
+.eula h6 {
+  font-size: 12px;
+}
+
+.eula-btn {
+  color: white;
+  background-color: #475366;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 20px;
+  border: 1px solid transparent;
+  transition: all 0.5s ease;
+  display: flex;
+  gap: 5px;
+}
+
+.eula-btn:hover {
+  border: 1px solid white;
+  transition: 0.3s ease;
+}

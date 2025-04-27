@@ -11,6 +11,10 @@
 # production
 /build
 
+/server/no_bg_image
+/server/upload_image
+
+
 # misc
 .DS_Store
 .env.local

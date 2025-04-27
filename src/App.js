@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import LeftDiv from "./body/LeftDiv";
+import RightDiv from "./body/RightDiv";
+import Footer from "./footer/Footer";
+import Header from "./header/Header";
 
 function App() {
+  const [imageName, setImageName] = useState("");
+  const [colorData, setColorData] = useState("");
+
+  const imageUpload = (name) => {
+    setImageName(name);
+  };
+
+  const getColorData = (color) => {
+    setColorData(color);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header colorData={colorData} getImageName={imageUpload} />
+      <div className="grid_body">
+        <RightDiv getColorData={getColorData} imageName={imageName} />
+        <LeftDiv imageName={imageName} colorData={colorData} />
+      </div>
+      <Footer />
     </div>
   );
 }
