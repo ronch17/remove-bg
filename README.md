@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# remove-bg
+
+A React application for removing backgrounds from images and applying custom background colors.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -13,6 +17,17 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+### Starting the Backend Server
+
+Navigate to the server directory and run:
+
+```
+cd server
+node app.js
+```
+
+This will start the Express backend server on port 5000.
 
 ### `npm test`
 
@@ -68,3 +83,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Features
+
+- Upload images
+- Remove backgrounds
+- Apply custom background colors
+- Download processed images
