@@ -3,6 +3,8 @@ import "./Header.css";
 import { BiUpload } from "react-icons/bi";
 import axios from "axios";
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const Header = ({ getImageName, colorData }) => {
   const inputElement = useRef();
   let mycolor = colorData;
@@ -25,7 +27,7 @@ const Header = ({ getImageName, colorData }) => {
       formData.append("color_to_api", mycolor);
 
       axios
-        .post(`http://localhost:5001/upload_file`, formData, config)
+        .post(`${apiUrl}/upload_file`, formData, config)
         .then((res) => {
           getImageName(res.data.imageName);
         });
