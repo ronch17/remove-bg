@@ -5,16 +5,17 @@ import axios from "axios";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
-const Header = ({ getImageName, colorData }) => {
+const Header = ({ getImageName, colorData, isLoading }) => {
   const inputElement = useRef();
+
   let mycolor = colorData;
 
   function upload_file() {
     inputElement.current.click();
   }
 
-  const sendFileToServer = (e) => {
-    let data = e.target.files[0];
+  const sendFileToServer = async (e) => {
+    const data = e.target.files[0];
 
     if (data.type === "image/png" || data.type === "image/jpeg") {
       const formData = new FormData();
@@ -26,14 +27,18 @@ const Header = ({ getImageName, colorData }) => {
       formData.append("myFile", data, data.name);
       formData.append("color_to_api", mycolor);
 
-      axios
-        .post(`${apiUrl}/upload_file`, formData, config)
-        .then((res) => {
-          getImageName(res.data.imageName);
-        });
+      try {
+        isLoading(true);
+        const res = await axios.post(`${apiUrl}/upload_file`, formData, config);
+        getImageName(res.data.imageName);
+      } catch (error) {
+        console.error("Error uploading file:", error);
+        alert("There was an error uploading the file.");
+      }
     } else {
-      alert("file type not suported");
+      alert("File type not supported");
     }
+    isLoading(false);
   };
 
   return (

@@ -8,6 +8,7 @@ import Header from "./header/Header";
 function App() {
   const [imageName, setImageName] = useState("");
   const [colorData, setColorData] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const imageUpload = (name) => {
     setImageName(name);
@@ -17,11 +18,15 @@ function App() {
     setColorData(color);
   };
 
+  const loaderFn = (val) => {
+      setIsLoading(val);
+  }
+
   return (
     <div className="App">
-      <Header colorData={colorData} getImageName={imageUpload} />
+      <Header isLoading={loaderFn} colorData={colorData} getImageName={imageUpload} />
       <div className="grid_body">
-        <RightDiv getColorData={getColorData} imageName={imageName} />
+        <RightDiv isLoading={isLoading} getColorData={getColorData} imageName={imageName} />
         <LeftDiv imageName={imageName} colorData={colorData} />
       </div>
       <Footer />

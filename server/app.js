@@ -7,16 +7,21 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 5001;
 
+const allowedOrigins = [
+  'http://localhost:3002',
+  'https://remove-bg-wine.vercel.app'
+];
+
 // הגדרות CORS
 app.use(cors({
-  origin: 'http://localhost:3002',
+  origin: allowedOrigins,
   credentials: true,
 }));
 
 // טיפול ב-OPTIONS
 app.use((req, res, next) => {
   if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3002');
+    res.header('Access-Control-Allow-Origin', allowedOrigins);
     res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.header('Access-Control-Allow-Credentials', 'true');

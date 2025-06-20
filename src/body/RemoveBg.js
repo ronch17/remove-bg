@@ -1,8 +1,9 @@
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import { PiWarningCircle } from "react-icons/pi";
 import "./RemoveBg.css";
+import { apiUrl } from "../utils/api";
 
-const RemoveBg = ({ imageName, getColorData }) => {
+const RemoveBg = ({ imageName, getColorData, isLoading }) => {
   const [color, setColor] = useState('');
   const inputElement = useRef();
 
@@ -58,17 +59,17 @@ const RemoveBg = ({ imageName, getColorData }) => {
         </div>
 
 
-        <div className="image-container">
+        <div className="image-container" style={{ ...(isLoading ? { height: "75%" } : {}) }}>
           {imageName ? (
               <div className="image-wrapper" style={{ backgroundColor: color }}>
                 <img
                     className="no-bg-img"
-                    src={`http://localhost:5001/upload_image/no_bg_${imageName}`}
+                    src={`${apiUrl}/upload_image/no_bg_${imageName}`}
                     alt="no-background"
                     crossOrigin="Anonymous"
                 />
               </div>
-          ) : (
+          ) : isLoading ? <div className="loader"></div> : (
               <h3 className="no-img-text">
                 העלו תמונה להסרת רקע, ניתן גם לבחור צבע בשביל לשנות צבע רקע
               </h3>

@@ -8,7 +8,7 @@ import { PiPictureInPictureDuotone } from "react-icons/pi";
 import { HiOutlineDocumentText } from "react-icons/hi";
 import Eula from "./Eula";
 
-const RightDiv = ({ imageName, getColorData }) => {
+const RightDiv = ({ imageName, getColorData, isLoading }) => {
   const [tabChange, setTabChange] = useState(false);
   const [eulaPopup, setEulaPopup] = useState(false);
 
@@ -52,9 +52,9 @@ const RightDiv = ({ imageName, getColorData }) => {
       </div>
       <div className="left_side">
         {tabChange ? (
-          <OriginalBg imageName={imageName} />
+          <OriginalBg isLoading={isLoading} imageName={imageName} />
         ) : (
-          <RemoveBg getColorData={getColorData} imageName={imageName} />
+          <RemoveBg isLoading={isLoading} getColorData={getColorData} imageName={imageName} />
         )}
       </div>
       <div className="eula">

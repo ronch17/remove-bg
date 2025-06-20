@@ -1,16 +1,18 @@
 import React from "react";
+import { apiUrl } from '../utils/api'
+import styles from "./OriginalBg.module.css";
 
-const OriginalBg = ({ imageName }) => {
+const OriginalBg = ({ imageName , isLoading}) => {
   return (
-    <div>
+    <div className={isLoading ? styles.container : {}}>
       {imageName ? (
         <img
           className="original-image"
-          src={`http://localhost:5001/upload_image/${imageName}`}
+          src={`${apiUrl}/upload_image/${imageName}`}
           alt="original"
           style={{ paddingTop: "3rem" }}
         />
-      ) : (
+      ) : isLoading ? <div className={styles.loader}></div> : (
         <h3>כאן תוצג התמונה המקורית שלך</h3>
       )}
     </div>
