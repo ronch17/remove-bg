@@ -3,6 +3,12 @@
   padding: 10px 10px;
 }
 
+@media (max-width: 768px) {
+  .inner_card {
+    display: flex;
+  }
+}
+
 .custom_gradient {
   background: linear-gradient(140deg, #1fc1f5, #8d65f3);
   border: none;

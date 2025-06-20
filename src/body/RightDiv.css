@@ -20,6 +20,12 @@
   padding: 9px;
 }
 
+@media (max-width: 768px) {
+  .left_side {
+    min-height: 15rem;
+  }
+}
+
 .No_bg,
 .Original_bg {
   width: 5rem;

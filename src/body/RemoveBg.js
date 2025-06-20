@@ -1,65 +1,80 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useCallback, useEffect } from "react";
 import { PiWarningCircle } from "react-icons/pi";
 import "./RemoveBg.css";
 
 const RemoveBg = ({ imageName, getColorData }) => {
-  const [color, setColor] = useState("#000");
-
+  const [color, setColor] = useState('');
   const inputElement = useRef();
 
-  function choose_color() {
+  useEffect(() => {
+    const storedColor = localStorage.getItem("backgroundColor");
+    if (storedColor) {
+      setColor(storedColor);
+    }
+  }, []);
+
+  const choose_color = () => {
     inputElement.current.click();
+  };
+
+  const change_color = useCallback((e) => {
+    const newColor = e.target.value;
+    setColor(newColor);
+    localStorage.setItem("backgroundColor", newColor);
+    getColorData(newColor);
+  }, [getColorData]);
+
+  const removeBg = () => {
+    setColor('');
+    localStorage.removeItem("backgroundColor");
+    getColorData('');
   }
-
-  function change_color(e) {
-    setColor(e.target.value);
-    getColorData(e.target.value);
-  }
-
-  // console.log(e.target.value);
-
   return (
-    <>
-      <div className="top-color-div">
-        <div className="color_div" onClick={choose_color}>
-          <span className="display_text"> צבע רקע </span>
-
-          <span
-            className="display_color"
-            style={{ backgroundColor: color }}
-          ></span>
-          <input
-            type="color"
-            className="input_color"
-            onChange={change_color}
-            ref={inputElement}
-          />
-        </div>
-
-        <div style={{ color: "#1098B2" }}>
-          <h6>
-            אל תשכח להוריד את הקבצים שלך. הם ימחקו אוטומטית כשתצא מהדף
-            <PiWarningCircle />
-          </h6>
-        </div>
-      </div>
-      <div className="image-container">
-        {imageName ? (
-          <div className="image-wrapper" style={{ backgroundColor: color }}>
-            <img
-              className="no-bg-img"
-              src={`http://localhost:5000/no_bg_${imageName}`}
-              alt="no-background"
-              crossOrigin="Anonymous"
+      <>
+        <div className="row">
+      <div className="btns-group">
+        <div className="top-color-div">
+          <div className="color_div" onClick={choose_color}>
+            <span className="display_text"> צבע רקע </span>
+            <span className="display_color" style={{ backgroundColor: color }}></span>
+            <input
+                type="color"
+                className="input_color"
+                onChange={change_color}
+                ref={inputElement}
+                value={color}
             />
           </div>
-        ) : (
-          <h3 className="no-img-text">
-            העלו תמונה להסרת רקע, ניתן גם לבחור צבע בשביל לשנות צבע רקע
-          </h3>
-        )}
+        </div>
+        <button className="remove-btn header-btn" onClick={removeBg} style={{backgroundColor: "transparent", border: "1px solid rgb(255 255 255 / 35%)"}}>הסר רקע</button>
+
       </div>
-    </>
+          <div style={{ color: "#1098B2" }}>
+            <h4>
+              אל תשכח להוריד את הקבצים שלך. הם ימחקו אוטומטית כשתצא מהדף
+              <PiWarningCircle />
+            </h4>
+          </div>
+        </div>
+
+
+        <div className="image-container">
+          {imageName ? (
+              <div className="image-wrapper" style={{ backgroundColor: color }}>
+                <img
+                    className="no-bg-img"
+                    src={`http://localhost:5001/upload_image/no_bg_${imageName}`}
+                    alt="no-background"
+                    crossOrigin="Anonymous"
+                />
+              </div>
+          ) : (
+              <h3 className="no-img-text">
+                העלו תמונה להסרת רקע, ניתן גם לבחור צבע בשביל לשנות צבע רקע
+              </h3>
+          )}
+        </div>
+      </>
   );
 };
 

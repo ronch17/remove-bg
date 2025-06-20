@@ -28,6 +28,14 @@ button {
   margin-top: 1rem;
 }
 
+@media (max-width: 768px) {
+  .grid_body {
+    display: flex;
+    flex-direction: column;
+  }
+
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

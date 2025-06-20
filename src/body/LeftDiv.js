@@ -10,7 +10,7 @@ const LeftDiv = ({ imageName, colorData }) => {
   // Function to download image
   const downloadImage = async (e) => {
     e.preventDefault(); // Prevent default navigation behavior
-    
+
     if (!imageName) {
       alert("Please upload an image first");
       return;
@@ -40,7 +40,7 @@ const LeftDiv = ({ imageName, colorData }) => {
 
       // Create a new div for capturing with exact dimensions
       const captureDiv = document.createElement('div');
-      captureDiv.style.backgroundColor = colorData || '#000000';
+      captureDiv.style.backgroundColor = colorData;
       captureDiv.style.width = '600px';
       captureDiv.style.height = '400px';
       captureDiv.style.position = 'fixed';
@@ -56,7 +56,7 @@ const LeftDiv = ({ imageName, colorData }) => {
       newImg.src = imgElement.src + '?t=' + new Date().getTime(); // Add timestamp to avoid caching
       newImg.style.maxWidth = '90%';
       newImg.style.maxHeight = '90%';
-      
+
       // Add the new image to our capture div
       captureDiv.appendChild(newImg);
       document.body.appendChild(captureDiv);
@@ -73,7 +73,7 @@ const LeftDiv = ({ imageName, colorData }) => {
         useCORS: true, // Try to use CORS for external images
         allowTaint: true, // Allow tainted canvas
       });
-      
+
       // Remove the temporary div
       document.body.removeChild(captureDiv);
 
@@ -81,7 +81,7 @@ const LeftDiv = ({ imageName, colorData }) => {
       canvas.toBlob((blob) => {
         // Create a URL for the blob
         const url = window.URL.createObjectURL(blob);
-        
+
         // Create a link and trigger download
         const link = document.createElement('a');
         link.href = url;
@@ -89,7 +89,7 @@ const LeftDiv = ({ imageName, colorData }) => {
         link.style.display = 'none';
         document.body.appendChild(link);
         link.click();
-        
+
         // Clean up
         window.URL.revokeObjectURL(url);
         document.body.removeChild(link);
@@ -105,7 +105,7 @@ const LeftDiv = ({ imageName, colorData }) => {
   // Function to download HD image (same as regular for demo but with higher quality)
   const downloadHDImage = async (e) => {
     e.preventDefault(); // Prevent default navigation behavior
-    
+
     if (!imageName) {
       alert("Please upload an image first");
       return;
@@ -151,7 +151,7 @@ const LeftDiv = ({ imageName, colorData }) => {
       newImg.src = imgElement.src + '?t=' + new Date().getTime(); // Add timestamp to avoid caching
       newImg.style.maxWidth = '90%';
       newImg.style.maxHeight = '90%';
-      
+
       // Add the new image to our capture div
       captureDiv.appendChild(newImg);
       document.body.appendChild(captureDiv);
@@ -164,11 +164,11 @@ const LeftDiv = ({ imageName, colorData }) => {
       // Create a canvas from the element with higher scale for HD
       const canvas = await html2canvas(captureDiv, {
         backgroundColor: colorData || "#000000",
-        scale: 4, // Even better quality for HD
+        scale: 6, // Even better quality for HD
         useCORS: true, // Try to use CORS for external images
         allowTaint: true, // Allow tainted canvas
       });
-      
+
       // Remove the temporary div
       document.body.removeChild(captureDiv);
 
@@ -176,7 +176,7 @@ const LeftDiv = ({ imageName, colorData }) => {
       canvas.toBlob((blob) => {
         // Create a URL for the blob
         const url = window.URL.createObjectURL(blob);
-        
+
         // Create a link and trigger download
         const link = document.createElement('a');
         link.href = url;
@@ -184,7 +184,7 @@ const LeftDiv = ({ imageName, colorData }) => {
         link.style.display = 'none';
         document.body.appendChild(link);
         link.click();
-        
+
         // Clean up
         window.URL.revokeObjectURL(url);
         document.body.removeChild(link);
@@ -200,6 +200,7 @@ const LeftDiv = ({ imageName, colorData }) => {
   return (
     <Card>
       <div className="inner_card" style={{ background: "#161B21" }}>
+        <div className="download_box">
         <h2>תמונה חינם</h2>
         <h4 dir="rtl">תצוגה מקדימה של תמונה 612x408</h4>
         <button className="custom_btn" onClick={downloadImage} disabled={isDownloading}>
@@ -209,8 +210,9 @@ const LeftDiv = ({ imageName, colorData }) => {
           <small> איכות טובה עד 0.25 מגה פיקסל </small>
           <img src={CHECK} alt="icon" width="13"></img>
         </div>
-
+        </div>
         <hr />
+        <div className="download_box">
         <div className="align_text">
           <h2>Pro</h2>
           <button className="custom_gradient custom-gradient">חדש!</button>
@@ -223,6 +225,7 @@ const LeftDiv = ({ imageName, colorData }) => {
         <div className="check_text">
           <small>איכות טובה עד 25 מגה פיקסל </small>
           <img src={CHECK} alt="icon" width="13"></img>
+        </div>
         </div>
       </div>
     </Card>

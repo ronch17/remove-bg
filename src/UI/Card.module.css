@@ -1,7 +1,11 @@
 .right_div {
   border-radius: 5px;
   background: #2f3a4b;
-  padding: 50px 1px;
+  padding: 5rem 1px;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 1px;
+  }
 }
 
 .left_div {

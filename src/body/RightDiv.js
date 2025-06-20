@@ -16,7 +16,7 @@ const RightDiv = ({ imageName, getColorData }) => {
     let ron = e.target.classList.value;
     console.log(ron);
 
-    if (e.target.classList.value == "No_bg") {
+    if (e.target.classList.value === "No_bg") {
       setTabChange(false);
     } else {
       setTabChange(true);
@@ -35,7 +35,7 @@ const RightDiv = ({ imageName, getColorData }) => {
           className="No_bg"
           onClick={changedTab}
           style={{
-            borderBottom: tabChange == true ? "" : "3px solid #C933F3",
+            borderBottom: tabChange === true ? "" : "3px solid #C933F3",
           }}
         >
           הסר רקע <PiPictureInPictureDuotone />
@@ -44,7 +44,7 @@ const RightDiv = ({ imageName, getColorData }) => {
           className="Original_bg"
           onClick={changedTab}
           style={{
-            borderBottom: tabChange == true ? "3px solid #C933F3" : "",
+            borderBottom: tabChange === true ? "3px solid #C933F3" : "",
           }}
         >
           מקורי <AiOutlinePicture />
@@ -62,10 +62,10 @@ const RightDiv = ({ imageName, getColorData }) => {
           <HiOutlineDocumentText />
           תקנון החברה
         </button>
-        <h6>
+        <h5>
           על ידי העלאת תמונה אתה מסכים לתנאים וההתנהלות שלנו. אתר זה מוגן על ידי
           מדיניות הפרטיות ותנאי השירות שלו
-        </h6>
+        </h5>
         {eulaPopup && <Eula close={openEula} />}
       </div>
     </Card>

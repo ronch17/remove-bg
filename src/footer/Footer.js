@@ -1,6 +1,7 @@
 import React from "react";
 import LOGO from "../assets/images_bg_remove/logo.png";
 import BANNER from "../assets/images_bg_remove/banner.png";
+import styles from "./Footer.module.css";
 
 const Footer = () => {
   const mystyle = {
@@ -13,7 +14,7 @@ const Footer = () => {
   return (
     <div style={mystyle}>
       <img src={LOGO} alt="logo" />
-      <img style={{ width: "70%" }} src={BANNER} alt="banner" />
+      <img className={styles.banner}  src={BANNER} alt="banner" />
     </div>
   );
 };

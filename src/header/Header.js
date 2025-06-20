@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import "./Header.css";
 import { BiUpload } from "react-icons/bi";
 import axios from "axios";
@@ -7,7 +7,6 @@ const Header = ({ getImageName, colorData }) => {
   const inputElement = useRef();
   let mycolor = colorData;
 
-  console.log(mycolor);
   function upload_file() {
     inputElement.current.click();
   }
@@ -15,7 +14,7 @@ const Header = ({ getImageName, colorData }) => {
   const sendFileToServer = (e) => {
     let data = e.target.files[0];
 
-    if (data.type == "image/png" || data.type == "image/jpeg") {
+    if (data.type === "image/png" || data.type === "image/jpeg") {
       const formData = new FormData();
 
       const config = {
@@ -26,9 +25,8 @@ const Header = ({ getImageName, colorData }) => {
       formData.append("color_to_api", mycolor);
 
       axios
-        .post(`http://localhost:5000/upload_file`, formData, config)
+        .post(`http://localhost:5001/upload_file`, formData, config)
         .then((res) => {
-          console.log(res);
           getImageName(res.data.imageName);
         });
     } else {
@@ -40,7 +38,7 @@ const Header = ({ getImageName, colorData }) => {
     <div className="bg">
       <div className="header">
         <div className="top_header">
-          <span className="esc">X</span>
+          <span className="esc"></span>
           <span className="header_text">העלאת תמונה כדי להסיר רקע</span>
         </div>
         <div className="bottom_header">
